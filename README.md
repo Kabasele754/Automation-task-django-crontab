@@ -34,6 +34,38 @@ CRONJOBS = [
 
 Dans cet exemple, la tâche est planifiée pour être exécutée toutes les 5 munites . Vous pouvez ajuster la chaîne cron selon vos besoins spécifiques.
 
+Les étoiles dans la chaîne cron (*/5 * * * *) spécifient la fréquence d'exécution d'une tâche. Dans le contexte de cron, chaque astérisque * correspond à un champ spécifique qui détermine quand une tâche doit être exécutée. La syntaxe complète d'une chaîne cron est la suivante 
+
+```commandline
+┌───────── minute (0 - 59)
+│ ┌─────── heure (0 - 23)
+│ │ ┌───── jour du mois (1 - 31)
+│ │ │ ┌─── mois (1 - 12)
+│ │ │ │ ┌─ jour de la semaine (0 - 6) (dimanche à samedi; 7 est également dimanche)
+│ │ │ │ │
+│ │ │ │ │
+* * * * *
+
+```
+Dans votre exemple, la chaîne cron '*/5 * * * *' est interprétée comme suit :
+
+*/5 pour les minutes : Cela signifie "toutes les 5 minutes". Donc, cette tâche sera exécutée toutes les cinq minutes.
+
+Voici une explication détaillée de chaque astérisque dans la chaîne */5 * * * * :
+
+1. Minute (*/5) : Cela signifie "toutes les 5 minutes". Ainsi, la tâche serait exécutée toutes les 5 minutes.
+
+2. Heure (*) : Cela signifie "à chaque heure". L'astérisque ici indique que la tâche sera exécutée à chaque heure, indépendamment de l'heure spécifique.
+
+3. Jour du mois (*) : Cela signifie "chaque jour du mois". L'astérisque ici indique que la tâche sera exécutée tous les jours du mois, indépendamment du jour spécifique.
+
+4. Mois (*) : Cela signifie "chaque mois". L'astérisque ici indique que la tâche sera exécutée tous les mois, indépendamment du mois spécifique.
+
+5. Jour de la semaine (*) : Cela signifie "chaque jour de la semaine". L'astérisque ici indique que la tâche sera exécutée tous les jours de la semaine, indépendamment du jour spécifique de la semaine.
+
+En résumé, la chaîne cron */5 * * * * configure une tâche pour s'exécuter toutes les 5 minutes, indépendamment de l'heure, du jour du mois, du mois ou du jour de la semaine.
+
+
 
 ## Appliquer la Configuration
 Après avoir ajouté la configuration, appliquez-la à votre projet en exécutant la commande suivante :
