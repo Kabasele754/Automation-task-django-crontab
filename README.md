@@ -36,7 +36,7 @@ Dans cet exemple, la tâche est planifiée pour être exécutée toutes les 5 mu
 
 Les étoiles dans la chaîne cron (*/5 * * * *) spécifient la fréquence d'exécution d'une tâche. Dans le contexte de cron, chaque astérisque * correspond à un champ spécifique qui détermine quand une tâche doit être exécutée. La syntaxe complète d'une chaîne cron est la suivante 
 
-```commandline
+```scss
 ┌───────── minute (0 - 59)
 │ ┌─────── heure (0 - 23)
 │ │ ┌───── jour du mois (1 - 31)
@@ -95,7 +95,7 @@ Assurez-vous de comprendre les implications avant de supprimer des tâches plani
 ## Exemple de Fonction à Automatiser
 Voici un exemple simple de la fonction que vous pourriez automatiser :
 
-```commandline
+```python
 def message_print():
     task = SubTask(
         title = "Achille Task",
@@ -104,7 +104,7 @@ def message_print():
     task.save()
 ```
 
-```commandline
+```python
 def expired_task_notification():
     # Affiche un message indiquant la préparation de l'envoi des e-mails
     print("prepare mail send")
