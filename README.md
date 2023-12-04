@@ -40,10 +40,25 @@ Après avoir ajouté la configuration, appliquez-la à votre projet en exécutan
 
 ```commandline
 python manage.py crontab add
-python manage.py crontab show
-python manage.py crontab remove
 
 ```
+Cette commande ajoute les tâches cron configurées dans votre fichier settings.py à la configuration cron du système. Elle est utilisée après avoir défini vos tâches planifiées avec le module django_crontab dans le fichier settings.py. Lorsque vous exécutez cette commande, elle enregistre ces tâches dans le système de tâches cron, et elles seront ensuite exécutées selon la planification que vous avez définie.
+
+```commandline
+python manage.py crontab show
+```
+
+Cette commande affiche la liste actuelle des tâches cron planifiées pour votre projet Django. Elle peut être utilisée pour vérifier quelles tâches ont été ajoutées au système de tâches cron. Cela vous permet de confirmer que les tâches planifiées ont été correctement enregistrées et qu'elles sont prêtes à être exécutées selon le calendrier défini.
+
+```commandline
+python manage.py crontab remove
+```
+
+Cette commande est utilisée pour supprimer les tâches cron associées à votre projet Django du système. Elle peut être utile si vous souhaitez arrêter l'exécution de tâches planifiées pour une raison quelconque. Notez que cela ne supprime pas la configuration de tâches de votre fichier settings.py, mais seulement les tâches planifiées actuelles dans le système de tâches cron.
+
+Remarque : L'utilisation de remove n'est généralement pas nécessaire si vous ajustez simplement la configuration de vos tâches dans le fichier settings.py. Vous pouvez simplement exécuter à nouveau add pour mettre à jour la configuration du système de tâches cron.
+
+Assurez-vous de comprendre les implications avant de supprimer des tâches planifiées, en particulier dans un environnement de production, pour éviter tout impact non souhaité sur le fonctionnement de votre application.
 
 ## Exemple de Fonction à Automatiser
 Voici un exemple simple de la fonction que vous pourriez automatiser :
