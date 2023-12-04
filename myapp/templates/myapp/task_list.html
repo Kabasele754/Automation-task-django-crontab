@@ -1,0 +1,13 @@
+<h2>Tâches expirées :</h2>
+<ul>
+  {% for task in expired_tasks %}
+    <li>{{ task.title }} - {{ task.expiration_date }}</li>
+  {% endfor %}
+</ul>
+
+<h2>Tâches à venir (dans deux jours) :</h2>
+<ul>
+  {% for task in upcoming_tasks %}
+    <li>{{ task.title }} - {{ task.expiration_date }}</li>
+  {% endfor %}
+</ul>
