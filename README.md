@@ -104,6 +104,57 @@ def message_print():
     task.save()
 ```
 
+```commandline
+def expired_task_notification():
+    # Affiche un message indiquant la préparation de l'envoi des e-mails
+    print("prepare mail send")
+    
+    # Récupère toutes les tâches expirées
+    expired_tasks = Task.objects.filter(expiration_date__lte=timezone.now())
+
+    # Itère sur chaque tâche expirée et envoie un e-mail à l'utilisateur
+    for task in expired_tasks:
+        user = task.user
+        send_mail(
+            'Votre tâche a expiré',
+            'La tâche "{}" a expiré. Veuillez la mettre à jour.'.format(task.title),
+            settings.EMAIL_HOST_USER,
+            [user.email],
+            fail_silently=False,
+        )
+
+    # Récupère toutes les tâches expirées dans les deux jours (y compris celles déjà récupérées)
+    upcoming_tasks = Task.objects.filter(
+        expiration_date__lte=timezone.now() + timezone.timedelta(days=2),
+        expiration_date__gt=timezone.now()  # Filtrer les tâches qui ont expiré dans les 2 jours
+    )
+
+    # Itère sur chaque tâche à venir dans les deux jours et envoie un e-mail à l'utilisateur
+    for task in upcoming_tasks:
+        user = task.user
+        send_mail(
+            'Votre tâche expire dans deux jours',
+            'La tâche "{}" va expirer dans deux jours. Veuillez la compléter, s\'il vous plaît.'.format(task.title),
+            settings.EMAIL_HOST_USER,
+            [user.email],
+            fail_silently=False,
+        )
+
+    # Affiche un message indiquant que les e-mails ont été envoyés
+    print("See mail send")
+
+```
+
+Quelques points à noter :
+
+1. Messages d'impression : J'ai ajouté des messages d'impression pour indiquer l'état du processus (préparation de l'envoi des e-mails et confirmation après l'envoi). Ces messages peuvent être utiles pour le suivi et le débogage, mais vous pouvez les retirer dans un environnement de production si vous ne souhaitez pas qu'ils apparaissent dans la console.
+
+2. Commentaires explicatifs : J'ai ajouté des commentaires pour expliquer chaque étape du processus, notamment la récupération des tâches expirées et à venir, ainsi que l'envoi des e-mails. Les commentaires aident à rendre le code plus compréhensible, surtout si quelqu'un d'autre doit le lire.
+
+3. Amélioration du message pour les tâches à venir : J'ai modifié le message pour les tâches à venir pour inclure une formulation plus claire, indiquant que la tâche expirera dans deux jours et invitant l'utilisateur à la compléter.
+
+Assurez-vous que les importations nécessaires (send_mail, settings, timezone) sont présentes dans votre fichier.
+
 ## Note Importante
 Assurez-vous que votre serveur est configuré pour exécuter les tâches cron. La configuration dépend du serveur que vous utilisez. Par exemple, si vous utilisez le serveur de développement Django, il exécutera les tâches cron par défaut. Pour les environnements de production, assurez-vous que le système de tâches cron est configuré correctement pour exécuter les tâches planifiées.
 

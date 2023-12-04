@@ -7,12 +7,16 @@ from .models import Task
 
 def task_list(request):
     expired_tasks = Task.objects.filter(expiration_date__lte=timezone.now())
-    upcoming_tasks = Task.objects.filter(expiration_date__lte=timezone.now() + timezone.timedelta(days=2))
+    # Récupérer toutes les tâches expirées dans les deux jours (y compris celles déjà récupérées)
+    upcoming_tasks = Task.objects.filter(
+        expiration_date__lte=timezone.now() + timezone.timedelta(days=2),
+        expiration_date__gt=timezone.now()  # Filtrer les tâches qui ont expiré dans les 2 jours
+    )
 
-    # for task in expired_tasks:
+    # for task in upcoming_tasks:
     #     user = task.user
     #     send_mail(
-    #         'Votre tâche a expiré',
+    #         'Votre tâche expire dans deux jour',
     #         'La tâche "{}" a expiré. Veuillez la mettre à jour.'.format(task.title),
     #         settings.EMAIL_HOST_USER,
     #         [user.email],

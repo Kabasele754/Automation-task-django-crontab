@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 
     'myapp.apps.MyappConfig',
-    # 'django_cron',
+    'django_cron',
     'django_crontab',
 ]
 
@@ -129,18 +129,20 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Email configuration
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_USE_TLS = config('EMAIL_USE_TLS')
+EMAIL_USE_TLS = True
 EMAIL_HOST = config('EMAIL_HOST')  # 'smtp.gmail.com' #config('EMAIL_HOST')
 EMAIL_PORT = config('EMAIL_PORT')  # 587 #config('EMAIL_PORT')
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
-EMAIL_USE_SSL = config('EMAIL_USE_SSL')
+EMAIL_USE_SSL = False
 
 
-# CRON_CLASSES = [
-#     'myapp.cron.ExpiredTaskNotification',
-# ]
+CRON_CLASSES = [
+    'myapp.cron.ExpiredTaskNotification',
+]
 
 CRONJOBS = [
-    ('*/5 * * * *', 'myapp.cron.message_print')
+
+    ('*/5 * * * *', 'myapp.cron.message_print'),
+    ('*/2 * * * *', 'myapp.cron.expired_task_notification')
 ]
