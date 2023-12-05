@@ -149,7 +149,7 @@ Quelques points à noter :
 
 1. Messages d'impression : J'ai ajouté des messages d'impression pour indiquer l'état du processus (préparation de l'envoi des e-mails et confirmation après l'envoi). Ces messages peuvent être utiles pour le suivi et le débogage, mais vous pouvez les retirer dans un environnement de production si vous ne souhaitez pas qu'ils apparaissent dans la console.
 
-2. Commentaires explicatifs : J'ai ajouté des commentaires pour expliquer chaque étape du processus, notamment la récupération des tâches expirées et à venir, ainsi que l'envoi des e-mails. Les commentaires aident à rendre le code plus compréhensible, surtout si quelqu'un d'autre doit le lire.
+2. Commentaires explicatifs : J'ai ajouté des commentaires pour expliquer chaque étape du processus, notamment la récupération des tâches expirées et à venir, ainsi que l'envoi des e-mails.
 
 3. Amélioration du message pour les tâches à venir : J'ai modifié le message pour les tâches à venir pour inclure une formulation plus claire, indiquant que la tâche expirera dans deux jours et invitant l'utilisateur à la compléter.
 
