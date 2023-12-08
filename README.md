@@ -1,5 +1,7 @@
 # Automation-task-django-crontab
 
+
+
 Django-crontab est une application qui permet d'automatiser l'exécution de tâches planifiées dans un projet Django en utilisant le système de tâches cron. Cela peut être particulièrement utile pour exécuter des tâches de fond, des scripts de maintenance, des notifications automatisées, etc. Voici comment vous pouvez automatiser une tâche avec django-crontab :
 
 ## Installation
@@ -64,6 +66,8 @@ Voici une explication détaillée de chaque astérisque dans la chaîne */5 * * 
 5. Jour de la semaine (*) : Cela signifie "chaque jour de la semaine". L'astérisque ici indique que la tâche sera exécutée tous les jours de la semaine, indépendamment du jour spécifique de la semaine.
 
 En résumé, la chaîne cron */5 * * * * configure une tâche pour s'exécuter toutes les 5 minutes, indépendamment de l'heure, du jour du mois, du mois ou du jour de la semaine.
+
+Visite le site de crontab pour le maitriser [Crontab](https://crontab.guru/).
 
 
 
